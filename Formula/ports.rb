@@ -1,8 +1,8 @@
 class Ports < Formula
   desc "Project-aware lsof for macOS — listening ports with project context"
   homepage "https://portscli.com"
-  url "https://github.com/erdemylmaz/ports-cli/archive/refs/tags/v0.4.1.tar.gz"
-  sha256 "83ae0a4ec35d386d769b89ac84d7417741b01284117ccc5290d4928c20db6673"
+  url "https://github.com/erdemylmaz/ports-cli/archive/refs/tags/v0.4.2.tar.gz"
+  sha256 "8edc9bcd33684aeef55b8fddb15b6f09a452440a18680a43f42ee6560ff21f6b"
   license "MIT"
   head "https://github.com/erdemylmaz/ports-cli.git", branch: "main"
 
