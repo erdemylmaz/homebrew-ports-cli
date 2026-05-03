@@ -1,16 +1,23 @@
 class Ports < Formula
-  desc "Project-aware lsof for macOS with kill-by-port and caffeinate support"
+  desc "Project-aware lsof with AI session discovery and followable caffeinate"
   homepage "https://portscli.com"
-  url "https://github.com/erdemylmaz/ports-cli/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "7d76da152d6556209d8b4e5e5262b76040356ee008a3f36c74b3bf156f92565b"
+  version "0.6.0"
   license "MIT"
   head "https://github.com/erdemylmaz/ports-cli.git", branch: "main"
 
-  depends_on "go" => :build
+  if Hardware::CPU.arm?
+    url "https://github.com/erdemylmaz/ports-cli/releases/download/v0.6.0/ports-darwin-arm64"
+    sha256 "0a06428458a91308a40195a05204f6cd91c528192760d9256374a9fdc22d03df"
+  else
+    url "https://github.com/erdemylmaz/ports-cli/releases/download/v0.6.0/ports-darwin-amd64"
+    sha256 "b4544a55a446c1a0a0eb7a9c847028373e4a8ac23ec4f5023e45274eee08a420"
+  end
+
   depends_on :macos
 
   def install
-    system "go", "build", *std_go_args(ldflags: "-s -w"), "./cmd/ports"
+    binary = Hardware::CPU.arm? ? "ports-darwin-arm64" : "ports-darwin-amd64"
+    bin.install binary => "ports"
   end
 
   test do
